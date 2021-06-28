@@ -8,4 +8,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#D9043D</color>
+    <color name="primaryVariant">#AF0431</color>
+    <color name="secondary">#315dE3</color>
+    <color name="secondaryVariant">#173BA6</color>
+
+    <color name="pastel_red">#FF9AA2</color>
+    <color name="pastel_salmon">#FFB7B2</color>
+    <color name="pastel_orange">#FFDAC1</color>
+    <color name="pastel_grass">#E2F0CB</color>
+    <color name="pastel_green">#B5EAD7</color>
+    <color name="pastel_purple">#C7CEEA</color>
 </resources>

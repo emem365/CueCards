@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Cue Cards</string>
+    <string name="add_cue_card">Add a Cue Card</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start_presentation_mode">Start Presentation Mode</string>
+    <string name="next">Next</string>
+    <string name="edit_cue_card">Edit Cue Card</string>
+    <string name="cue_card_title">Cue Card Title</string>
+    <string name="add_a_bullet_point">Add a bullet point</string>
+    <string name="add">Add</string>
+    <string name="content_empty">Content cannot be empty!</string>
+    <string name="title_empty">Title cannot be empty!</string>
+    <string name="save">SAVE</string>
 </resources>

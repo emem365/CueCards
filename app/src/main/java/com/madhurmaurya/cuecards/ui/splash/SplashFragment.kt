@@ -22,7 +22,7 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        object: CountDownTimer(2000, 2000){
+        object : CountDownTimer(2000, 2000) {
             override fun onTick(millisUntilFinished: Long) {
             }
 
@@ -32,7 +32,7 @@ class SplashFragment : Fragment() {
         }.start()
     }
 
-    private fun goToNextScreen(){
+    private fun goToNextScreen() {
         findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
     }
 }
