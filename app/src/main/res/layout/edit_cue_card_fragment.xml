@@ -63,42 +63,65 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <EditText
-            android:id="@+id/title_edit_text"
+        <com.google.android.material.textfield.TextInputLayout
+            android:padding="8dp"
+            android:id="@+id/title_text_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/cue_card_title"
             android:hint="@string/cue_card_title"
-            android:inputType="text"
-            app:layout_constraintTop_toBottomOf="@id/edit_card_title" />
+            app:layout_constraintTop_toBottomOf="@id/edit_card_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/title_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/lato"
+                android:inputType="textPersonName|textNoSuggestions"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@id/cue_card_fragment_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/card_content_edit_text"
-            app:layout_constraintTop_toBottomOf="@id/title_edit_text" />
+            app:layout_constraintBottom_toTopOf="@id/content_text_field"
+            app:layout_constraintTop_toBottomOf="@id/title_text_field" />
 
-        <EditText
-            android:id="@+id/card_content_edit_text"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:padding="8dp"
+            android:id="@+id/content_text_field"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/add_a_bullet_point"
             android:hint="@string/add_a_bullet_point"
-            android:inputType="text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/add_card_content_button"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/content_input_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/lato"
+                android:inputType="textPersonName|textNoSuggestions"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/add_card_content_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/card_content_edit_text" />
+            app:layout_constraintTop_toTopOf="@id/content_text_field" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

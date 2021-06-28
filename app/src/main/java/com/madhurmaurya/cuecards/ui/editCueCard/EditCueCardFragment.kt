@@ -35,7 +35,7 @@ class EditCueCardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             cueCardFragmentRecyclerView.adapter = CueCardContentRecyclerViewAdapter()
-            titleEditText.text.insert(0, viewModel.title)
+            titleInputEditText.text?.insert(0, viewModel.title)
             lifecycleOwner = viewLifecycleOwner
         }
 
@@ -52,12 +52,14 @@ class EditCueCardFragment : Fragment() {
     }
 
     private fun addContent() {
-        val text = binding.cardContentEditText.text
+        val text = binding.contentInputEditText.text
         if (text.isNullOrEmpty()) {
-            binding.cardContentEditText.error = getString(R.string.content_empty)
+            binding.contentTextField.isErrorEnabled = true
+            binding.contentTextField.error = getString(R.string.content_empty)
         } else {
             viewModel.add(CardContent(text.toString()))
-            binding.cardContentEditText.text.clear()
+            binding.contentTextField.isErrorEnabled = false
+            binding.contentInputEditText.text?.clear()
         }
     }
 
@@ -67,14 +69,17 @@ class EditCueCardFragment : Fragment() {
     }
 
     private fun done() {
-        val text = binding.titleEditText.text
+        val text = binding.titleInputEditText.text
         if (text.isNullOrEmpty()) {
-            binding.titleEditText.error = getString(R.string.title_empty)
+            binding.titleTextField.isErrorEnabled = true
+            binding.titleTextField.error = getString(R.string.title_empty)
         } else {
+            binding.titleTextField.isErrorEnabled = false
             viewModel.setTitle(text.toString())
             val card = viewModel.getCueCard()
             if (card == null) {
-                binding.cardContentEditText.error = getString(R.string.content_empty)
+                binding.contentTextField.isErrorEnabled = true
+                binding.contentTextField.error = getString(R.string.content_empty)
                 return
             }
             val sharedViewModel: CueCardsViewModel by activityViewModels()
