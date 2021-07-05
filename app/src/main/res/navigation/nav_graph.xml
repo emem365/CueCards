@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_cueCardFragment_to_editCueCardFragment"
             app:destination="@id/editCueCardFragment" />
+        <action
+            android:id="@+id/action_cueCardFragment_to_presentationModeFragment"
+            app:destination="@id/presentationModeFragment" />
     </fragment>
     <fragment
         android:id="@+id/editCueCardFragment"
@@ -45,4 +48,8 @@
         android:label="EditCueCardFragment" >
         <argument android:name="cueCard" />
     </fragment>
+    <fragment
+        android:id="@+id/presentationModeFragment"
+        android:name="com.madhurmaurya.cuecards.ui.cueCard.PresentationModeFragment"
+        android:label="PresentationModeFragment" />
 </navigation>

@@ -1,18 +1,17 @@
 package com.madhurmaurya.cuecards.ui.cueCard
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.madhurmaurya.cuecards.data.models.CardContent
-import com.madhurmaurya.cuecards.databinding.CardContentItemBinding
+import com.madhurmaurya.cuecards.databinding.PresentationModeItemFragmentBinding
 
-class CueCardContentRecyclerViewAdapter : ListAdapter<CardContent,
-        CueCardContentRecyclerViewAdapter.CardContentViewHolder>(DiffCallback) {
+class PresentationModeViewPagerAdapter(private val viewPager: ViewPager2) : ListAdapter<CardContent,
+        PresentationModeViewPagerAdapter.CardContentViewHolder>(DiffCallback) {
 
-    private lateinit var view: View
 
     companion object DiffCallback : DiffUtil.ItemCallback<CardContent>() {
         override fun areItemsTheSame(oldItem: CardContent, newItem: CardContent): Boolean {
@@ -24,27 +23,31 @@ class CueCardContentRecyclerViewAdapter : ListAdapter<CardContent,
         }
     }
 
-    class CardContentViewHolder(private var binding: CardContentItemBinding) :
+    class CardContentViewHolder(private var binding: PresentationModeItemFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(CardContent: CardContent, position: Int) {
-            val str = "$position."
+        fun bind(CardContent: CardContent, viewPager: ViewPager2) {
             binding.cardContent = CardContent
-            binding.index = str
+            binding.root.setOnClickListener {
+                viewPager.apply {
+                    beginFakeDrag()
+                    fakeDragBy(-10f)
+                    endFakeDrag()
+                }
+            }
             binding.executePendingBindings()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardContentViewHolder {
-        view = parent
         return CardContentViewHolder(
-            CardContentItemBinding.inflate(
+            PresentationModeItemFragmentBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
         )
     }
 
     override fun onBindViewHolder(holder: CardContentViewHolder, position: Int) {
-        val cardContent = getItem(position)
-        holder.bind(cardContent, position)
+        val cueCard = getItem(position)
+        holder.bind(cueCard, viewPager)
     }
 }

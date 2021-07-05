@@ -14,6 +14,7 @@ import com.madhurmaurya.cuecards.data.models.CardContent
 import com.madhurmaurya.cuecards.databinding.EditCueCardFragmentBinding
 import com.madhurmaurya.cuecards.ui.cueCard.CueCardContentRecyclerViewAdapter
 import com.madhurmaurya.cuecards.ui.sharedViewModels.CueCardsViewModel
+import com.madhurmaurya.cuecards.ui.sharedViewModels.EditCueCardViewModel
 
 class EditCueCardFragment : Fragment() {
 

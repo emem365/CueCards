@@ -6,18 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.madhurmaurya.cuecards.R
 import com.madhurmaurya.cuecards.databinding.CueCardFragmentBinding
-import com.madhurmaurya.cuecards.ui.editCueCard.EditCueCardViewModel
+import com.madhurmaurya.cuecards.ui.sharedViewModels.EditCueCardViewModel
 
 const val CUE_CARD_ID = "cueCard"
 
 class CueCardFragment : Fragment() {
 
     private lateinit var binding: CueCardFragmentBinding
-    private val singleCueCardViewModel: SingleCueCardViewModel by viewModels()
+    private val singleCueCardViewModel: SingleCueCardViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +42,8 @@ class CueCardFragment : Fragment() {
             }
         }
         binding.editButton.setOnClickListener { editCueCard() }
+        binding.playButton.setOnClickListener { presentCueCard() }
+        binding.backButton.setOnClickListener { navigateUp() }
         return binding.root
     }
 
@@ -50,5 +51,13 @@ class CueCardFragment : Fragment() {
         val sharedViewModel: EditCueCardViewModel by activityViewModels()
         sharedViewModel.initFromCueCard(singleCueCardViewModel.cueCard.value)
         findNavController().navigate(R.id.action_cueCardFragment_to_editCueCardFragment)
+    }
+
+    private fun presentCueCard(){
+        findNavController().navigate(R.id.action_cueCardFragment_to_presentationModeFragment)
+    }
+
+    private fun navigateUp(){
+        findNavController().navigateUp()
     }
 }
