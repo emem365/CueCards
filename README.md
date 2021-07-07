@@ -1,6 +1,6 @@
 # <center>CueCards</center>
 <center>Multipurpose Cards Application</center><br>
-<span> <img src="https://emem365.github.io/host_repo/cueCardsSplash.png" width=175> <img src="https://emem365.github.io/host_repo/cueCardsHome.png" width=175> <img src="https://emem365.github.io/host_repo/cueCardsCard.png" width=175> <img src="https://emem365.github.io/host_repo/cuecardsPresentation.png" width=175> <img src="https://emem365.github.io/host_repo/cueCardsEdit.png" width=175></span> <br>
+<span> <img src="https://emem365.github.io/host_repo/cueCardsSplash.png" width=175> <img src="https://emem365.github.io/host_repo/cueCardsCard.png" width=175> <img src="https://emem365.github.io/host_repo/cuecardsPresentation.png" width=175> <img src="https://emem365.github.io/host_repo/cueCardsEdit.png" width=175></span> <br>
 <br>
 <span> <img align="right" src="https://emem365.github.io/host_repo/cueCardsHomeDark.png" width=175> <img align="right" src="https://emem365.github.io/host_repo/cueCardsHome.png" width=175> </span> <br>
 Create CueCards for your needs. Whether it's a presentation, a speech, or last moment flash notes, Cue Cards has got you covered
