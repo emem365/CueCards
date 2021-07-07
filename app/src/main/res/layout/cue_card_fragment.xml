@@ -7,33 +7,23 @@
     <data>
 
         <variable
+            name="color"
+            type="int" />
+        <variable
             name="cueCardViewModel"
             type="com.madhurmaurya.cuecards.ui.cueCard.SingleCueCardViewModel" />
 
-        <variable
-            name="context"
-            type="android.content.Context" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ProgressBar
-            android:id="@+id/cue_card_fragment_progress_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cue_card_fragment_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@{context.getColor(cueCardViewModel.cueCard.color)}"
-            android:visibility="visible">
+            android:background="@{context.getColor(color)}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/title"
@@ -58,14 +48,16 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:ellipsize="end"
                     android:fontFamily="@font/montserrat_bold"
+                    android:maxLines="1"
                     android:padding="8dp"
-                    android:text="@{cueCardViewModel.cueCard.title}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
+                    app:layout_constraintEnd_toStartOf="@+id/play_button"
                     app:layout_constraintStart_toEndOf="@id/back_button"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="@string/app_name" />
@@ -118,7 +110,6 @@
                 android:id="@+id/cue_card_fragment_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                app:cueCard="@{cueCardViewModel.cueCard}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />

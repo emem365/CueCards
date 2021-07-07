@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "cue_card")
 data class CueCard(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Long = 0L,
     val title: String,
     val color: Int
 )

@@ -11,7 +11,7 @@
 
         <variable
             name="cardContent"
-            type="com.madhurmaurya.cuecards.data.models.CardContent" />
+            type="String" />
     </data>
 
     <LinearLayout
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/lato"
             android:textAppearance="?attr/textAppearanceBody1"
-            android:text="@{cardContent.content}"
+            android:text="@{cardContent}"
             android:textColor="#121212"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id orci a elit luctus dapibus ac at nunc. Praesent convallis nisi id mi lobortis faucibus." />
     </LinearLayout>

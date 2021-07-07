@@ -2,6 +2,7 @@ package com.madhurmaurya.cuecards.ui.editCueCard
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.madhurmaurya.cuecards.R
-import com.madhurmaurya.cuecards.data.models.CardContent
 import com.madhurmaurya.cuecards.databinding.EditCueCardFragmentBinding
 import com.madhurmaurya.cuecards.ui.cueCard.CueCardContentRecyclerViewAdapter
 import com.madhurmaurya.cuecards.ui.sharedViewModels.CueCardsViewModel
@@ -40,10 +40,10 @@ class EditCueCardFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
         }
 
-        viewModel.currentState.observe(viewLifecycleOwner) {
+        viewModel.contents.observe(viewLifecycleOwner) {
             val adapter = (binding.cueCardFragmentRecyclerView.adapter
                     as CueCardContentRecyclerViewAdapter)
-            adapter.submitList(it.contents)
+            adapter.submitList(it)
             adapter.notifyDataSetChanged()
         }
 
@@ -58,7 +58,7 @@ class EditCueCardFragment : Fragment() {
             binding.contentTextField.isErrorEnabled = true
             binding.contentTextField.error = getString(R.string.content_empty)
         } else {
-            viewModel.add(CardContent(text.toString()))
+            viewModel.add(text.toString())
             binding.contentTextField.isErrorEnabled = false
             binding.contentInputEditText.text?.clear()
         }
@@ -77,14 +77,20 @@ class EditCueCardFragment : Fragment() {
         } else {
             binding.titleTextField.isErrorEnabled = false
             viewModel.setTitle(text.toString())
-            val card = viewModel.getCueCard()
-            if (card == null) {
+            if (viewModel.contents.value == null || viewModel.contents.value!!.isEmpty()) {
                 binding.contentTextField.isErrorEnabled = true
                 binding.contentTextField.error = getString(R.string.content_empty)
                 return
             }
+            Log.d("Edit", "reaching here")
             val sharedViewModel: CueCardsViewModel by activityViewModels()
-            sharedViewModel.add(card)
+            if(viewModel.id == null){
+                sharedViewModel.add(viewModel.title, viewModel.color, viewModel.contents.value!!)
+            }
+            else {
+                sharedViewModel.update(viewModel.id!!, viewModel.title, viewModel.color, viewModel.contents.value!!)
+            }
+            Log.d("Edit", "updated here")
             findNavController().navigateUp()
             viewModel.reset()
         }

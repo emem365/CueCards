@@ -7,13 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.madhurmaurya.cuecards.CardsApplication
 import com.madhurmaurya.cuecards.R
 import com.madhurmaurya.cuecards.databinding.PresentationModeFragmentBinding
 
 class PresentationModeFragment : Fragment() {
 
     private lateinit var binding: PresentationModeFragmentBinding
-    private val viewModel: SingleCueCardViewModel by activityViewModels()
+    private val viewModel: SingleCueCardViewModel by activityViewModels{
+        val database = (activity?.application as CardsApplication).database
+        SingleCueCardViewModelFactory(database.cueCardDao())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,12 +25,17 @@ class PresentationModeFragment : Fragment() {
     ): View {
         binding = PresentationModeFragmentBinding.inflate(inflater, container, false)
         binding.apply {
-            color = viewModel.cueCard.value?.color ?: R.color.pastel_red
+            color = viewModel.cueCardWithCueCardContents.value?.cueCard?.color ?: R.color.pastel_red
             lifecycleOwner = viewLifecycleOwner
             presentationViewPager.adapter = PresentationModeViewPagerAdapter(presentationViewPager)
-            (presentationViewPager.adapter as PresentationModeViewPagerAdapter)
-                .submitList(viewModel.cueCard.value?.contents)
+
         }
+        viewModel.cueCardWithCueCardContents.observe(viewLifecycleOwner){
+            (binding.presentationViewPager.adapter as PresentationModeViewPagerAdapter)
+                .submitList(it.cueCardContents)
+            binding.color = it.cueCard.color
+        }
+
         return binding.root
     }
 

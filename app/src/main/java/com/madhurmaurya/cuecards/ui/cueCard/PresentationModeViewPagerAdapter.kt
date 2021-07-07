@@ -6,27 +6,27 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.madhurmaurya.cuecards.data.models.CardContent
+import com.madhurmaurya.cuecards.data.CueCardContent
 import com.madhurmaurya.cuecards.databinding.PresentationModeItemFragmentBinding
 
-class PresentationModeViewPagerAdapter(private val viewPager: ViewPager2) : ListAdapter<CardContent,
+class PresentationModeViewPagerAdapter(private val viewPager: ViewPager2) : ListAdapter<CueCardContent,
         PresentationModeViewPagerAdapter.CardContentViewHolder>(DiffCallback) {
 
 
-    companion object DiffCallback : DiffUtil.ItemCallback<CardContent>() {
-        override fun areItemsTheSame(oldItem: CardContent, newItem: CardContent): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+    companion object DiffCallback : DiffUtil.ItemCallback<CueCardContent>() {
+        override fun areItemsTheSame(oldItem: CueCardContent, newItem: CueCardContent): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: CardContent, newItem: CardContent): Boolean {
+        override fun areContentsTheSame(oldItem: CueCardContent, newItem: CueCardContent): Boolean {
             return oldItem.content == newItem.content
         }
     }
 
     class CardContentViewHolder(private var binding: PresentationModeItemFragmentBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(CardContent: CardContent, viewPager: ViewPager2) {
-            binding.cardContent = CardContent
+        fun bind(CueCardContent: CueCardContent, viewPager: ViewPager2) {
+            binding.cardContent = CueCardContent
             binding.root.setOnClickListener {
                 viewPager.apply {
                     beginFakeDrag()

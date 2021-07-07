@@ -3,14 +3,13 @@ package com.madhurmaurya.cuecards.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.madhurmaurya.cuecards.data.models.CueCard
+import com.madhurmaurya.cuecards.data.CueCard
 import com.madhurmaurya.cuecards.databinding.HomeCueCardItemBinding
 
-class CueCardsRecyclerViewAdapter : ListAdapter<CueCard,
+class CueCardsRecyclerViewAdapter( private val onClick: (Long)->Unit) : ListAdapter<CueCard,
         CueCardsRecyclerViewAdapter.CueCardViewHolder>(DiffCallback) {
 
     private lateinit var view: View
@@ -21,7 +20,7 @@ class CueCardsRecyclerViewAdapter : ListAdapter<CueCard,
         }
 
         override fun areContentsTheSame(oldItem: CueCard, newItem: CueCard): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
+            return oldItem.title == newItem.title
         }
     }
 
@@ -29,13 +28,6 @@ class CueCardsRecyclerViewAdapter : ListAdapter<CueCard,
         RecyclerView.ViewHolder(binding.root) {
         fun bind(CueCard: CueCard, view: View) {
             binding.cueCard = CueCard
-            binding.context = view.context
-            binding.root.setOnClickListener {
-                val action = HomeFragmentDirections.actionHomeFragmentToCueCardFragment(
-                    CueCard.id
-                )
-                view.findNavController().navigate(action)
-            }
             binding.executePendingBindings()
         }
     }
@@ -51,6 +43,9 @@ class CueCardsRecyclerViewAdapter : ListAdapter<CueCard,
 
     override fun onBindViewHolder(holder: CueCardViewHolder, position: Int) {
         val cueCard = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClick(cueCard.id)
+        }
         holder.bind(cueCard, view)
     }
 }

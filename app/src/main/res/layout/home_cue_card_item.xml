@@ -8,11 +8,7 @@
 
         <variable
             name="cueCard"
-            type="com.madhurmaurya.cuecards.data.models.CueCard" />
-
-        <variable
-            name="context"
-            type="android.content.Context" />
+            type="com.madhurmaurya.cuecards.data.CueCard" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -36,14 +32,6 @@
                 android:text="@{cueCard.title}"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 tools:text="Some Text" />
-
-            <TextView
-                android:id="@+id/home_cue_card_item_body"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/montserrat"
-                android:text="@{cueCard.contents[0].content}"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit." />
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>

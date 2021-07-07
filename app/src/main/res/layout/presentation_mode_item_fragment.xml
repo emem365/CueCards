@@ -5,7 +5,7 @@
     <data>
         <variable
             name="cardContent"
-            type="com.madhurmaurya.cuecards.data.models.CardContent" />
+            type="com.madhurmaurya.cuecards.data.CueCardContent" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
